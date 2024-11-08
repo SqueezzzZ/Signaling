@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Signaling : MonoBehaviour
@@ -8,72 +9,51 @@ public class Signaling : MonoBehaviour
     [SerializeField] private float _maxVolume = 1f;
     [SerializeField] private float _volumeRate = 0.2f;
 
-    private bool _isRogueEntered = false;
-    private bool _isSignalingActive = false;
+    [SerializeField]  private bool _isSignalingActive = false;
+
+    private Coroutine _currentCorutine;
 
     private void Awake()
     {
         _audioSource.volume = _minVolume;
     }
 
-    private void Update()
+    public void SetAlarmStatus(bool isAlarming)
     {
-        UpdateSignaling();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (_isRogueEntered == true)
-            return;
-
-        if (other.GetComponent<Rogue>() == false)
-            return;
-
-        _isRogueEntered = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (_isRogueEntered == false)
-            return;
-
-        if (other.GetComponent<Rogue>() == false)
-            return;
-
-        _isRogueEntered = false;
-    }
-
-    private void UpdateSignaling()
-    {
-        if (_isRogueEntered == true && _audioSource.volume < _maxVolume)
+        if (_isSignalingActive == true)
         {
-            IncreaseVolume();
+            StopCoroutine(_currentCorutine);
+        }
 
+        if(isAlarming == true)
+        {
             if(_isSignalingActive == false)
             {
                 _isSignalingActive = true;
                 _audioSource.Play();
             }
+
+            _currentCorutine = StartCoroutine(ChangeVolumeSmoothly(_maxVolume));
         }
-        else if(_isRogueEntered == false && _isSignalingActive == true)
+        else if(isAlarming == false)
         {
-            ReduceVolume();
-
-            if(_audioSource.volume <= _minVolume)
-            {
-                _isSignalingActive = false;
-                _audioSource.Pause();
-            }
+            _currentCorutine = StartCoroutine(ChangeVolumeSmoothly(_minVolume));
         }
     }
 
-    private void ReduceVolume()
+    private IEnumerator ChangeVolumeSmoothly(float targetVolume)
     {
-        _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _minVolume, _volumeRate * Time.deltaTime);
-    }
+        while (_audioSource.volume != targetVolume)
+        {
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, targetVolume, _volumeRate * Time.deltaTime);
 
-    private void IncreaseVolume()
-    {
-        _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, _maxVolume, _volumeRate * Time.deltaTime);
+            yield return null;
+        }
+
+        if (_audioSource.volume == _minVolume)
+        { 
+            _audioSource.Stop();
+            _isSignalingActive = false;
+        }
     }
 }

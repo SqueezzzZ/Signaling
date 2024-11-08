@@ -241,7 +241,6 @@ GameObject:
   - component: {fileID: 243467795}
   - component: {fileID: 243467794}
   - component: {fileID: 243467798}
-  - component: {fileID: 243467799}
   - component: {fileID: 243467800}
   m_Layer: 0
   m_Name: Rogue
@@ -350,20 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b0515f02259b5479b55db04375c99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &243467799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243467793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22053cb4d858a884897f1d83631528fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rotationSpeed: 200
-  _movementSpeed: 5
 --- !u!54 &243467800
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -970,7 +955,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1313028874}
   - component: {fileID: 1313028876}
-  - component: {fileID: 1313028873}
   - component: {fileID: 1313028875}
   m_Layer: 0
   m_Name: Signaling
@@ -979,27 +963,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1313028873
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313028872}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 4, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1313028874
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,6 +1196,73 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597026552}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1751997023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751997025}
+  - component: {fileID: 1751997024}
+  - component: {fileID: 1751997026}
+  m_Layer: 0
+  m_Name: SignalingTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1751997024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751997023}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 4, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1751997025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751997023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751997026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751997023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96ee23d01a9db74ebe347dcb7a6d387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _signaling: {fileID: 1313028876}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1243,3 +1273,4 @@ SceneRoots:
   - {fileID: 384804706}
   - {fileID: 243467797}
   - {fileID: 1313028874}
+  - {fileID: 1751997025}
