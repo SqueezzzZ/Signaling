@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 243467794}
   - component: {fileID: 243467798}
   - component: {fileID: 243467800}
+  - component: {fileID: 243467801}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: Untagged
@@ -376,6 +377,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &243467801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243467793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22053cb4d858a884897f1d83631528fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 200
+  _movementSpeed: 10
 --- !u!1 &384804705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,6 +1105,7 @@ MonoBehaviour:
   _minVolume: 0
   _maxVolume: 1
   _volumeRate: 0.2
+  _isSignalingActive: 0
 --- !u!1 &1597026552
 GameObject:
   m_ObjectHideFlags: 0
